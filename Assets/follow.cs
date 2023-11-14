@@ -23,7 +23,7 @@ public class follow : MonoBehaviour
     {
        
         if (anim) {
-            anim.SetFloat("Speed", movespeed);
+            anim.SetFloat("speed", agent.velocity.magnitude);
         }
 
         if (player == null)
