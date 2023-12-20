@@ -34,6 +34,10 @@ public class follow : MonoBehaviour
             agent.isStopped = false;
             transform.LookAt(player);
             agent.SetDestination(player.position);
+            if(Vector3.Distance(transform.position, player.position) <= stoppingDistance)
+            {
+                anim.SetTrigger("attack");
+            }
         }
         
     }
