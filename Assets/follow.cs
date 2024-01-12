@@ -14,6 +14,7 @@ public class follow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+     //   anim = GetComponent<Animator>();
         agent= GetComponent<NavMeshAgent>();
         agent.speed= movespeed;
     }
@@ -22,7 +23,8 @@ public class follow : MonoBehaviour
     void Update()
     {
        
-        if (anim) {
+        if (anim) 
+        {
             anim.SetFloat("speed", agent.velocity.magnitude);
         }
 
@@ -30,9 +32,15 @@ public class follow : MonoBehaviour
         {
             agent.isStopped = true ;
         }
-        else {
+        else
+        {
             agent.isStopped = false;
-            transform.LookAt(player);
+            if (player.position.y < 2.3f) 
+            {
+                transform.LookAt(player.position);
+            }
+            
+           // transform.LookAt(player);
             agent.SetDestination(player.position);
             if(Vector3.Distance(transform.position, player.position) <= stoppingDistance)
             {
@@ -44,7 +52,8 @@ public class follow : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) {
+        if (other.CompareTag("Player")) 
+        {
             isFollowing = true;
             player = other.gameObject.transform;
         }
