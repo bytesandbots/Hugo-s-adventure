@@ -10,6 +10,8 @@ public class follow : MonoBehaviour
     public bool isFollowing = true;
     public Animator anim;
     private NavMeshAgent agent;
+    public float attackDelay = 3;
+    private float ctime;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +19,7 @@ public class follow : MonoBehaviour
      //   anim = GetComponent<Animator>();
         agent= GetComponent<NavMeshAgent>();
         agent.speed= movespeed;
+        agent.stoppingDistance= stoppingDistance;
     }
 
     // Update is called once per frame
@@ -44,7 +47,15 @@ public class follow : MonoBehaviour
             agent.SetDestination(player.position);
             if(Vector3.Distance(transform.position, player.position) <= stoppingDistance)
             {
-                anim.SetTrigger("attack");
+
+                if (ctime > attackDelay)
+                {
+                    anim.SetTrigger("attack");
+                    ctime = 0;
+                }
+                else {
+                    ctime += Time.deltaTime;
+                }
             }
         }
         
