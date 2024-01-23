@@ -14,6 +14,10 @@ public class playerMovement : MonoBehaviour
     public  Animator anim;
     public Vector3 moveDirection = Vector3.zero;
 
+    public float punchdelay = 1;
+    private float ctime;
+    bool punched;
+
     void Start()
     {
         currentSpeed = speed;
@@ -24,7 +28,25 @@ public class playerMovement : MonoBehaviour
 
     void Update()
     {
-        float oldy = moveDirection.y;
+
+        if (Input.GetMouseButtonDown(0) && !punched)
+        {
+            anim.SetTrigger("attacking");
+            punched = true;
+        }
+        if (punched){
+            if (ctime > punchdelay) {
+                punched = false;
+                ctime = 0;
+            
+            }
+            else
+            {
+                ctime += Time.deltaTime;
+            }
+            }
+
+            float oldy = moveDirection.y;
         moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
         moveDirection = Camera.main.transform.GetChild(0).TransformDirection(moveDirection);
         if (Input.GetKey(KeyCode.LeftShift))
