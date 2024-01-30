@@ -194,6 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalhealth: 30
+  coin: {fileID: 4031398324460882703, guid: 1430611f0da87e0459f292be9102dbcd, type: 3}
 --- !u!1001 &1619576888
 PrefabInstance:
   m_ObjectHideFlags: 0

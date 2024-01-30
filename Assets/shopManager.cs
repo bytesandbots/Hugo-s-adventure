@@ -21,6 +21,14 @@ public class shopManager : MonoBehaviour
         {
             shopActive = !shopActive;
             shop.SetActive(!shopActive);
+            if(shopActive)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            else
+            {
+                Cursor.lockState= CursorLockMode.None;
+            }
         }
     
     }
